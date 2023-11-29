@@ -1,0 +1,15 @@
+#!~/bin/bash
+
+
+echo -n "Enter Folder Name: "
+read foldername
+echo -n "Creating $foldername ..."
+npx create-vite@latest "$foldername" --template react-ts
+cd "$foldername"
+echo -n "installling node packages ..."
+npm install 
+
+viteconfig=vite.config.ts
+#adding line to defineconfig to allow the index.html to function after build
+sed -i "/export default defineConfig/a base: './'," "$viteconfig"
+

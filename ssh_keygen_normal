@@ -1,0 +1,7 @@
+#! ~/bin
+echo -n "THE GODS DEMAND UNIQUENESS! NEWNESS! OBEY THE UTZ: "
+read filename
+ssh-keygen -t ed25519 -a 100 -f ~/.ssh/$filename
+ssh-add ~/.ssh/$filename
+echo -n "THE GODS GIFT"
+cat ~/.ssh/"$filename".pub

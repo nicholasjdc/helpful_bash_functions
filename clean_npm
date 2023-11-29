@@ -1,0 +1,9 @@
+#  for macOS and Linux
+rm -rf node_modules
+rm -f package-lock.json
+rm package.json
+rm tsconfig.json
+
+
+# 👇️ clean npm cache
+npm cache clean --force

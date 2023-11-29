@@ -1,0 +1,4 @@
+#! ~/bin
+echo -n "Enter ssh_id (UNIQUE! UNIQUE! THE GODS SAY ONE): "
+read filename
+ssh-keygen -t ed25519 -C "nicholasjdc@github.com" -f ~/.ssh/$filename

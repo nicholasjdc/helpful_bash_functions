@@ -1,0 +1,38 @@
+#!~/bin/bash
+
+
+echo -n "Enter Folder Name: "
+read foldername
+echo -n "Would you like to install typescript? (y/n): "
+read typescriptconfirm
+echo -n "Would you like to install react? (y/n): "
+read reactconfirm
+echo -n "Would you like to install ThreeJS? (y/n): "
+read threejsconfirm
+
+echo -n "Creating $foldername ..."
+if [[$typescriptconfirm ==~ ^[Yy]$ && $reactconfirm==[yY] ]]; then
+	echo "react and Typescript build"
+	npx create-vite@latest "$foldername" --template react-ts
+elif [[ $typescriptconfirm == [yY] ]]; then
+	echo "vanilla typescript build"
+	npx create-vite@latest "$foldername" --template vanilla-ts
+elif [[ "$reactconfirm" == [yY] ]]; then
+	echo "react build"
+	npx create-vite@latest "$foldername" --template react
+else
+	echo "vanilla buid"
+	npx create-vite@latest "$foldername" --template vanilla
+fi
+
+cd "$foldername"
+echo -n "installling node packages ..."
+npm install 
+if [[ "$threejsconfirm" ==[yY] ]];then
+	echo "installing threejs"
+	npm install threejs
+fi
+viteconfig=vite.config.ts
+#adding line to defineconfig to allow the index.html to function after build
+sed -i "/export default defineConfig/a base: './'," "$viteconfig"
+

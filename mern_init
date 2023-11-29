@@ -1,0 +1,8 @@
+#! ~/bin
+mkdir backend
+cd backend
+npm init -y
+npm install express
+npm install dotenv
+npm install nodemon
+touch .env
